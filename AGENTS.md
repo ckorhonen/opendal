@@ -176,3 +176,11 @@ refactor(core): Simplify error handling
 - Use `just` for common development tasks
 - Check CI workflows for platform-specific requirements
 - Services are tested against real backends (credentials required)
+
+## Repository workflow and completion
+
+Use the checked-in stable Rust toolchain with rustfmt/clippy and retain existing Cargo, all-feature lint, and behavior-test requirements. The workspace spans `core/`, bindings, integrations, binaries, and tooling; read the nearest guide and select the owning component tooling. All Cargo commands must still run from `core/`, as required above. Root Just generation targets can touch multiple languages.
+
+Behavior tests can write storage services: use disposable authorized buckets/emulators and scoped credentials, never production by default. Report exact blocked backend checks while continuing independent work. Preserve public-API/performance constraints and distinguish compile/unit evidence from storage behavior.
+
+Continue the authorized change through relevant validation and repair of failures it causes; preserve unrelated work. Report checks actually run, commands only inspected, and exact missing prerequisites. Ask only when a material decision, missing authorization, or required input blocks progress; continue independent reversible work. Existing mandatory contribution and validation gates still apply.
